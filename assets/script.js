@@ -8,7 +8,7 @@ const date = new Date();
 function fetchWeather() {
        let city1 = document.getElementById("cityTxt").value
           console.log("city = ", city1);
-      let weatherAPI_URL = "http://api.openweathermap.org/geo/1.0/direct?q="+ city1 + "&limit=1&appid=" + apiKey;
+      let weatherAPI_URL = "https://api.openweathermap.org/geo/1.0/direct?q="+ city1 + "&limit=1&appid=" + apiKey;
        console.log(weatherAPI_URL);
 
   
