@@ -100,7 +100,7 @@ function fetchWeather() {
         imgElement6.src = iconUrl6;
         document.getElementById("icon6").appendChild(imgElement6)
         
-
+        document.getElementById("hider").classList.remove("is-hidden")
         
       })
       .catch(error => {
