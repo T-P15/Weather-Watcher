@@ -1,11 +1,14 @@
 const apiKey = "99b2eb99c967dc883266dcd877ae5f0b"
 const apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=' + apiKey;
 let cityArray= [];
+let weatherArray= [];
+const date = new Date();
+
 
 function fetchWeather() {
-       let city = document.getElementById("cityTxt").value
-          console.log("city = ", city);
-      let weatherAPI_URL = "http://api.openweathermap.org/geo/1.0/direct?q="+ city + "&limit=1&appid=" + apiKey;
+       let city1 = document.getElementById("cityTxt").value
+          console.log("city = ", city1);
+      let weatherAPI_URL = "http://api.openweathermap.org/geo/1.0/direct?q="+ city1 + "&limit=1&appid=" + apiKey;
        console.log(weatherAPI_URL);
 
   
@@ -30,7 +33,20 @@ function fetchWeather() {
         return response.json();
       })
       .then(data2 => {
-        console.log(data2)
+        const weatherArray = data2
+        console.log(weatherArray)
+        document.getElementById("wya").innerHTML= weatherArray.city.name +"  " + weatherArray.list[0].dt_txt; 
+        document.getElementById("temp").innerHTML= "current temperature: " + weatherArray.list[0].main.temp + "K";
+        document.getElementById("humid").innerHTML= "current humidity: " + weatherArray.list[0].main.humidity + "%";
+        document.getElementById("wind").innerHTML= "current windspeed: " + weatherArray.list[0].wind.speed + "m/s";
+        const iconCode = weatherArray.list[0].weather[0].icon;
+        const iconUrl = "http://openweathermap.org/img/wn/"+iconCode+".png";
+        const imgElement = document.createElement('img');
+        imgElement.src = iconUrl;
+        document.getElementById("wya").appendChild(imgElement)
+        
+
+        
       })
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
